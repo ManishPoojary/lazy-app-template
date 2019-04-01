@@ -55,6 +55,8 @@ import { AppComponent } from './app.component';
   bootstrap: [AppComponent] //somente o módulo root define um bootstrap
 })
 export class AppModule { }
+
+
 In this sample code, we have turned the AppModule class into an Angular Module just by using the @NgModule decorator.
 
 Lazy Loading
@@ -72,6 +74,8 @@ Edit the app.component.html template file to include the navigation links on the
   <a routerLink="lazy">Lazy Module</a>
 </nav>
 <router-outlet></router-outlet>
+
+
 Our application does not have a defined style, we will only increase the font and add a spacing between navigation links by editing the app.component.css file:
 
 a {    
@@ -79,6 +83,8 @@ a {
     padding: 14px;    
     font-size: 17px;    
 }
+
+
 Let’s create the Home component that will be loaded at startup and called by the default route:
 
 ng generate component home
@@ -96,6 +102,8 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+
 The first definition redirects the default route to the home route, the second call the Home component. With these changes, after the Hot Reloading the Home component will load on the home page:
 
 
@@ -110,6 +118,7 @@ Next, we will create a component that will be part of the Lazy module. We will n
 
 cd src/app/lazy
 ng generate component sobre
+
 Inside the module folder when executing the command causes @angular/cli to automatically import the component created in the lazy.module.ts file:
 
 import { NgModule } from '@angular/core';
@@ -124,6 +133,8 @@ import { SobreComponent } from './sobre/sobre.component';
   declarations: [SobreComponent]
 })
 export class LazyModule { }
+
+
 The newly created component has automatically imported by @angular/cli in the declarations property.
 
 The next step is edit the app-routing.module.ts file to add the routing to the module:
@@ -141,6 +152,8 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+
 We create a new route called lazy, which uses the loadChild property to load the module. This way the Lazy module will only be loaded when the lazy route is triggered by the user.
 
 To load the About component, that is inside the Lazy module we must edit the lazy-routing.module.ts file:
@@ -156,6 +169,8 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class LazyRoutingModule { }
+
+
 This route defines that when the module is loaded its default route will pointer to the About component:
 
 
